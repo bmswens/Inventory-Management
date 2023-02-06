@@ -4,6 +4,12 @@ import React from 'react'
 // MUI
 import { Box, Divider, Grid, Typography } from '@mui/material'
 
+// React router
+import { useParams } from 'react-router-dom'
+
+// custom
+import api from '../../api/demo'
+
 function ItemTitle(props) {
     const { name } = props
 
@@ -20,7 +26,7 @@ function ItemTitle(props) {
 
 function ItemImage(props) {
 
-    const { url, name } = props
+    const { img, name } = props
 
     return (
         <Grid 
@@ -102,15 +108,16 @@ function ItemData(props) {
 
 function Item(props) {
 
+    const { nsn } = useParams()
+
     const {
         name,
         img,
-        nsn,
         location,
         stock,
         cost,
         notes
-    } = props
+    } = api.getByNSN(nsn)
     
     return (
         <Grid

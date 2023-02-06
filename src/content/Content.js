@@ -1,29 +1,26 @@
 // React
 import React from 'react'
 
-// MUI
-import { Grid } from '@mui/material'
+// React router
+import { Route, Routes } from 'react-router-dom'
 
 // custom
-import ItemCard from './item/ItemCard'
-import api from '../api/demo'
+import AllItems from './item/AllItems'
+import Item from './item/Item'
 
 function Content(props) {
 
-    let items = api.getAll()
-
     return (
-        <Grid
-            container
-            spacing={1}
-            sx={{
-                paddingLeft: "7px",
-                paddingRight: "7px",
-                marginTop: "7px"
-            }}
-        >
-            {items.map(item => <ItemCard {...item} />)}
-        </Grid>
+        <Routes>
+            <Route
+                path="/"
+                element={<AllItems />}
+            />
+            <Route
+                path="/items/:nsn"
+                element={<Item />}
+            />
+        </Routes>
     )
 }
 

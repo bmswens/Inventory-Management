@@ -8,6 +8,7 @@ import { Avatar, Box, Card, CardActions, CardHeader, CardMedia, Grid, IconButton
 import InputIcon from '@mui/icons-material/Input'
 import LocalShippingIcon from '@mui/icons-material/LocalShipping'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
+import { Link } from 'react-router-dom'
 
 function StockAvatar(props) {
     const { stock } = props
@@ -45,6 +46,8 @@ function ItemCardHeader(props) {
 }
 
 function ItemCardActions(props) {
+    
+    const { nsn } = props
 
     return (
         <CardActions>
@@ -74,13 +77,13 @@ function ItemCardActions(props) {
             <Tooltip
                 title="View Details"
             >
-                <span>
+                <Link to={`/items/${nsn}`}>
                     <IconButton
                         aria-label="View Details"
                     >
                         <OpenInNewIcon fontSize='large' />
                     </IconButton>
-                </span>
+                </Link>
             </Tooltip>
         </CardActions>
     )
@@ -116,7 +119,9 @@ function ItemCard(props) {
                         }}
                     />
                 </Box>
-                <ItemCardActions />
+                <ItemCardActions
+                    nsn={nsn}
+                />
             </Card>
         </Grid>
     )

@@ -3,7 +3,7 @@
         "name": "Fuse, Cartridge",
         "nsn": "5920014702312",
         "stock": 3,
-        "img": "./img/fuse.png",
+        "img": "/img/fuse.png",
         "location": "01A004B001",
         "cost": 1.03,
         "notes": "3 units on backorder.\nEach item is a package of two."
@@ -12,7 +12,7 @@
         "name": "Stud Turnlock Faste",
         "nsn": "5325011679455",
         "stock": 0,
-        "img": "./img/stud.png",
+        "img": "/img/stud.png",
         "location": "01A004B002",
         "cost": 7.17,
         "notes": "More units coming in on 06 FEB."
