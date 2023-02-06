@@ -4,6 +4,7 @@ import React from 'react'
 // MUI
 import { Grid } from '@mui/material'
 import Item from './item/Item'
+import ItemCard from './item/ItemCard'
 
 // custom
 
@@ -28,6 +29,12 @@ function Content(props) {
                 cost={1.03}
                 stock={3}
                 notes={"3 units on backorder.\nEach item is a package of two."}
+            />
+            <ItemCard
+                name="Fuse, Cartridge"
+                img="./img/fuse.png"
+                nsn="5920014702312"
+                stock={3}
             />
         </Grid>
     )
