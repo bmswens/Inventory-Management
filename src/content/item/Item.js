@@ -39,7 +39,7 @@ function ItemImage(props) {
                 <Grid item xs={12}>
                     <Box
                         component="img"
-                        src={url}
+                        src={img}
                         alt={`${name}`}
                         width="auto"
                         style={{
@@ -104,7 +104,7 @@ function Item(props) {
 
     const {
         name,
-        url,
+        img,
         nsn,
         location,
         stock,
@@ -118,7 +118,7 @@ function Item(props) {
             spacing={1}
         >
             <ItemTitle name={name} />
-            <ItemImage name={name} url={url} />
+            <ItemImage name={name} img={img} />
             <ItemData
                 nsn={nsn}
                 location={location}
