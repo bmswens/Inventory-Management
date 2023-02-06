@@ -7,5 +7,14 @@
         "location": "01A004B001",
         "cost": 1.03,
         "notes": "3 units on backorder.\nEach item is a package of two."
+    },
+    "5325011679455": {
+        "name": "Stud Turnlock Faste",
+        "nsn": "5325011679455",
+        "stock": 0,
+        "img": "./img/stud.png",
+        "location": "01A004B002",
+        "cost": 7.17,
+        "notes": "More units coming in on 06 FEB."
     }
 }
