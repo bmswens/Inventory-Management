@@ -113,7 +113,7 @@ function ItemCard(props) {
                 >
                     <CardMedia
                         component="img"
-                        image={img}
+                        image={process.env.PUBLIC_URL +  img}
                         alt={name}
                         sx={{
                             height: "20vh",

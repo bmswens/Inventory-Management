@@ -17,46 +17,46 @@ function HomePage(props) {
                 marginTop: "7px"
             }}
         >
-            <Grid item xs={12} md={6} lg={3}>
+            <Grid item xs={6} lg={3}>
                 <Box
                     component="img"
-                    src="/img/qr/Bin34.png"
+                    src={process.env.PUBLIC_URL + "/img/qr/Bin34.png"}
                     sx={{
                         maxHeight: "192px"
                     }}
                 />
             </Grid>
-            <Grid item xs={12} md={6} lg={3}>
+            <Grid item xs={6} lg={3}>
                 <Box
                     component="img"
-                    src="/img/qr/Order13482312.png"
+                    src={process.env.PUBLIC_URL + "/img/qr/Order13482312.png"}
                     sx={{
                         maxHeight: "192px"
                     }}
                 />
             </Grid>
-            <Grid item xs={12} md={6} lg={3}>
+            <Grid item xs={6}lg={3}>
                 <Box
                     component="img"
-                    src="/img/qr/Order13489455.png"
+                    src={process.env.PUBLIC_URL + "/img/qr/Order13489455.png"}
                     sx={{
                         maxHeight: "192px"
                     }}
                 />
             </Grid>
-            <Grid item xs={12} md={6} lg={3}>
+            <Grid item xs={6} lg={3}>
                 <Box
                     component="img"
-                    src="/img/qr/FuseBin.png"
+                    src={process.env.PUBLIC_URL + "/img/qr/FuseBin.png"}
                     sx={{
                         maxHeight: "192px"
                     }}
                 />
             </Grid>
-            <Grid item xs={12} md={6} lg={3}>
+            <Grid item xs={6} lg={3}>
                 <Box
                     component="img"
-                    src="/img/qr/StudTurnlock.png"
+                    src={process.env.PUBLIC_URL + "/img/qr/StudBin.png"}
                     sx={{
                         maxHeight: "192px"
                     }}

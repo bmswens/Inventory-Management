@@ -2,7 +2,7 @@
 import React from 'react'
 
 // MUI
-import { Button, Grid, Typography } from '@mui/material'
+import { Box, Button, Grid, Typography } from '@mui/material'
 
 // MUI Icons
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner'
@@ -159,7 +159,7 @@ function Order(props) {
                     Final Bin: {binDisplay}
                 </Typography>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={6}>
                 <ScanItemsButton
                     nsn={nsn}
                     disabled={completed}
@@ -167,7 +167,8 @@ function Order(props) {
                     setCompleted={() => setItemScanned(true)}
                 />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={6} sx={{display: "flex"}}>
+                <Box sx={{flexGrow: 1}} />
                 <ScanFinalBinButton
                     ready={itemScanned}
                     completed={binScanned}

@@ -52,7 +52,7 @@ function TopNav(props) {
                             <IconButton>
                                 <Box
                                     component="img"
-                                    src="/logo512.png"
+                                    src={process.env.PUBLIC_URL + "/logo512.png"}
                                     sx={{
                                         height: "36px",
                                         width: "36px"

@@ -45,7 +45,7 @@ function ItemImage(props) {
                 <Grid item xs={12}>
                     <Box
                         component="img"
-                        src={img}
+                        src={process.env.PUBLIC_URL + img}
                         alt={`${name}`}
                         width="auto"
                         style={{
