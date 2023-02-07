@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 function CameraDialog(props) {
 
-    const { open, close } = props
+    const { open, close, callback } = props
     const navigate = useNavigate()
 
     function handleResult(result) {
@@ -17,7 +17,15 @@ function CameraDialog(props) {
             console.log(result)
             try {
                 let data = JSON.parse(result)
-                if (data.nsn) {
+                if (callback) {
+                    callback(data)
+                    close()
+                }
+                else if (data.name) {
+                    navigate(`/orders/${data.name}`)
+                    close()
+                }
+                else if (data.nsn) {
                     navigate(`/items/${data.nsn}`)
                     close()
                 }

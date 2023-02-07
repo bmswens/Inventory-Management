@@ -1,0 +1,22 @@
+{
+    "1348-2312": {
+        "name": "1348-2312",
+        "completed": false,
+        "nsn": "5920014702312",
+        "quantity": 6,
+        "price": 6.18,
+        "shipFrom": "FB4661",
+        "shipTo": "",
+        "finalBin": ""
+    },
+    "1348-9455": {
+        "name": "1348-9455",
+        "completed": true,
+        "nsn": "5325011679455",
+        "quantity": 3,
+        "price": 21.51,
+        "shipFrom": "FB4661",
+        "shipTo": "FB4690",
+        "finalBin": "Bin 420"
+    }
+}

@@ -5,12 +5,12 @@ import React from 'react'
 import { Grid } from '@mui/material'
 
 // custom
-import ItemCard from './ItemCard'
 import api from '../../api/demo'
+import OrderCard from './OrderCard'
 
-function AllItems(props) {
+function AllOrders(props) {
 
-    let items = api.items.getAll()
+    let orders = api.orders.getAll()
 
     return (
         <Grid
@@ -22,9 +22,9 @@ function AllItems(props) {
                 marginTop: "7px"
             }}
         >
-            {items.map(item => <ItemCard key={item.nsn} {...item} />)}
+            {orders.map(order => <OrderCard key={order.name} {...order} />)}
         </Grid>
     )
 }
 
-export default AllItems
+export default AllOrders

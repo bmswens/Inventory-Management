@@ -117,7 +117,7 @@ function Item(props) {
         stock,
         cost,
         notes
-    } = api.getByNSN(nsn)
+    } = api.items.getByNSN(nsn)
     
     return (
         <Grid
