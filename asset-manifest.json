@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "./static/css/main.dd819f42.css",
-    "main.js": "./static/js/main.5f735aa2.js",
-    "static/js/787.93120110.chunk.js": "./static/js/787.93120110.chunk.js",
-    "index.html": "./index.html",
-    "main.dd819f42.css.map": "./static/css/main.dd819f42.css.map",
-    "main.5f735aa2.js.map": "./static/js/main.5f735aa2.js.map",
-    "787.93120110.chunk.js.map": "./static/js/787.93120110.chunk.js.map"
+    "main.css": "/Inventory-Management/static/css/main.dd819f42.css",
+    "main.js": "/Inventory-Management/static/js/main.c7cf9320.js",
+    "static/js/787.93120110.chunk.js": "/Inventory-Management/static/js/787.93120110.chunk.js",
+    "index.html": "/Inventory-Management/index.html",
+    "main.dd819f42.css.map": "/Inventory-Management/static/css/main.dd819f42.css.map",
+    "main.c7cf9320.js.map": "/Inventory-Management/static/js/main.c7cf9320.js.map",
+    "787.93120110.chunk.js.map": "/Inventory-Management/static/js/787.93120110.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dd819f42.css",
-    "static/js/main.5f735aa2.js"
+    "static/js/main.c7cf9320.js"
   ]
 }
