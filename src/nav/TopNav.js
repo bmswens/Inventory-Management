@@ -2,10 +2,12 @@
 import React from 'react'
 
 // MUI
-import { AppBar, Box, IconButton, Toolbar, Tooltip, Typography } from '@mui/material'
+import { AppBar, Box, IconButton, Toolbar, Tooltip } from '@mui/material'
 
 // MUI Icons
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner'
+import InventoryIcon from '@mui/icons-material/Inventory'
+import RequestPageIcon from '@mui/icons-material/RequestPage'
 
 // custom
 import CameraDialog from '../dialog/CameraDialog'
@@ -44,11 +46,38 @@ function TopNav(props) {
             >
                 <Toolbar>
                     <Link to="/" style={{textDecoration: "none", color: "inherit"}}>
-                        <Typography
-                            variant="h4"
+                        <Tooltip
+                            title="Home"
                         >
-                            Inventory Management
-                        </Typography>
+                            <IconButton>
+                                <Box
+                                    component="img"
+                                    src="/logo512.png"
+                                    sx={{
+                                        height: "36px",
+                                        width: "36px"
+                                    }}
+                                />
+                            </IconButton>
+                        </Tooltip>
+                    </Link>
+                    <Link to="/items" style={{textDecoration: "none", color: "inherit"}}>
+                        <Tooltip
+                            title="Items"
+                        >
+                            <IconButton>
+                                <InventoryIcon fontSize="large" />
+                            </IconButton>
+                        </Tooltip>
+                    </Link>
+                    <Link to="/orders" style={{textDecoration: "none", color: "inherit"}}>
+                        <Tooltip
+                            title="Orders"
+                        >
+                            <IconButton>
+                                <RequestPageIcon fontSize="large" />
+                            </IconButton>
+                        </Tooltip>
                     </Link>
                     <Box sx={{flexGrow: 1}} />
                     <QRButton />
