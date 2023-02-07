@@ -9,6 +9,7 @@ import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner'
 
 // custom
 import CameraDialog from '../dialog/CameraDialog'
+import { Link } from 'react-router-dom'
 
 function QRButton(props) {
     const [open, setOpen] = React.useState(false)
@@ -42,11 +43,13 @@ function TopNav(props) {
                 position="static"
             >
                 <Toolbar>
-                    <Typography
-                        variant="h4"
-                    >
-                        Inventory Management
-                    </Typography>
+                    <Link to="/" style={{textDecoration: "none", color: "inherit"}}>
+                        <Typography
+                            variant="h4"
+                        >
+                            Inventory Management
+                        </Typography>
+                    </Link>
                     <Box sx={{flexGrow: 1}} />
                     <QRButton />
                 </Toolbar>
