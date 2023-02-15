@@ -28,7 +28,7 @@ function Content(props) {
                 element={<Item />}
             />
             <Route
-                path="/orders"
+                path="/pull"
                 element={<AllOrders />}
             />
             <Route

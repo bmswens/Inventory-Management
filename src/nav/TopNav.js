@@ -6,8 +6,6 @@ import { AppBar, Box, IconButton, Toolbar, Tooltip } from '@mui/material'
 
 // MUI Icons
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner'
-import InventoryIcon from '@mui/icons-material/Inventory'
-import RequestPageIcon from '@mui/icons-material/RequestPage'
 
 // react router
 import { Link } from 'react-router-dom'
@@ -60,24 +58,6 @@ function TopNav(props) {
                                         width: "36px"
                                     }}
                                 />
-                            </IconButton>
-                        </Tooltip>
-                    </Link>
-                    <Link to="/items" style={{textDecoration: "none", color: "inherit"}}>
-                        <Tooltip
-                            title="Items"
-                        >
-                            <IconButton>
-                                <InventoryIcon fontSize="large" />
-                            </IconButton>
-                        </Tooltip>
-                    </Link>
-                    <Link to="/orders" style={{textDecoration: "none", color: "inherit"}}>
-                        <Tooltip
-                            title="Orders"
-                        >
-                            <IconButton>
-                                <RequestPageIcon fontSize="large" />
                             </IconButton>
                         </Tooltip>
                     </Link>

@@ -114,7 +114,7 @@ function HomePage(props) {
                 icon={<FollowTheSignsIcon sx={{ fontSize: "20vmin" }} />}
             />
             <AppButton
-                disabled
+                link="/pull"
                 title="Pull"
                 icon={<DownloadIcon sx={{ fontSize: "20vmin" }} />}
             />
