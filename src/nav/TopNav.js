@@ -9,9 +9,11 @@ import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner'
 import InventoryIcon from '@mui/icons-material/Inventory'
 import RequestPageIcon from '@mui/icons-material/RequestPage'
 
+// react router
+import { Link } from 'react-router-dom'
+
 // custom
 import CameraDialog from '../dialog/CameraDialog'
-import { Link } from 'react-router-dom'
 
 function QRButton(props) {
     const [open, setOpen] = React.useState(false)
