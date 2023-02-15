@@ -111,7 +111,7 @@ function ScanOrderButton(props) {
             color={completed ? "success" : "primary"}
             onClick={handleClick}
         >
-            Scan Items
+            Scan Order
         </Button>
         <CameraDialog
             callback={callback}
