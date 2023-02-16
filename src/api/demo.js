@@ -1,5 +1,6 @@
 import items from './items.json'
 import orders from './orders.json'
+import spareParts from './spareparts.json'
 
 // items
 function getAll() {
@@ -35,6 +36,11 @@ function getOrderByName(name) {
     return orders[name]
 }
 
+// spare parts
+function getAllSpareParts() {
+    return spareParts
+}
+
 const api = {
     items: {
         getAll,
@@ -43,7 +49,11 @@ const api = {
     orders: {
         getAll: getAllOrders,
         getByName: getOrderByName
+    },
+    spareParts: {
+        getAll: getAllSpareParts
     }
 }
+
 
 export default api

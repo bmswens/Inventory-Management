@@ -19,6 +19,9 @@ import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner'
 import SettingsIcon from '@mui/icons-material/Settings'
 import YouTubeIcon from '@mui/icons-material/YouTube'
 import FollowTheSignsIcon from '@mui/icons-material/FollowTheSigns'
+import TableRestaurantIcon from '@mui/icons-material/TableRestaurant'
+import ConstructionIcon from '@mui/icons-material/Construction'
+import QrCodeIcon from '@mui/icons-material/QrCode'
 
 // custom
 import CameraDialog from '../dialog/CameraDialog'
@@ -153,6 +156,21 @@ function HomePage(props) {
                 disabled
                 title="Settings"
                 icon={<SettingsIcon sx={{ fontSize: "20vmin" }} />}
+            />
+            <AppButton
+                disabled
+                title="Bench Stock"
+                icon={<TableRestaurantIcon sx={{ fontSize: "20vmin" }} />}
+            />
+            <AppButton
+                link="/spare-parts"
+                title="Spare Parts"
+                icon={<ConstructionIcon sx={{ fontSize: "20vmin" }} />}
+            />
+            <AppButton
+                disabled
+                title="QR Maker"
+                icon={<QrCodeIcon sx={{ fontSize: "20vmin" }} />}
             />
         </Grid>
 

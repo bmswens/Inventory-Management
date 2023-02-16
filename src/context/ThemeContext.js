@@ -4,6 +4,7 @@ import React from 'react'
 // MUI
 import { CssBaseline } from '@mui/material'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
+import ScrollToTop from './ScrollToTop'
 
 function ThemeContext(props) {
 
@@ -15,6 +16,7 @@ function ThemeContext(props) {
 
     return (
         <ThemeProvider theme={theme}>
+            <ScrollToTop />
             <CssBaseline />
             {props.children}
         </ThemeProvider>

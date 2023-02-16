@@ -9,7 +9,7 @@ import AllItems from './item/AllItems'
 import Item from './item/Item'
 import HomePage from './HomePage'
 import AllOrders from './order/AllOrders'
-import Order from './order/Order'
+import SpareParts from './spareparts/SpareParts'
 
 function Content(props) {
 
@@ -32,8 +32,8 @@ function Content(props) {
                 element={<AllOrders />}
             />
             <Route
-                path="/orders/:name"
-                element={<Order />}
+                path="/spare-parts"
+                element={<SpareParts />}
             />
         </Routes>
     )
