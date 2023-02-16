@@ -25,6 +25,7 @@ import QrCodeIcon from '@mui/icons-material/QrCode'
 
 // custom
 import CameraDialog from '../dialog/CameraDialog'
+import QRMakerDialog from '../dialog/QRMakerDialog'
 
 
 function AppButton(props) {
@@ -83,6 +84,35 @@ function QRAppButton(props) {
                     QR Scanner
                 </Typography>
                 <CameraDialog
+                    open={open}
+                    close={close}
+                />
+            </Stack>
+        </Grid>
+    )
+}
+
+function QRMakerButton(props) {
+    const [open, setOpen] = React.useState(false)
+    function close() {
+        setOpen(false)
+    }
+    return (
+        <Grid item xs={4} sx={{ display: "flex", justifyContent: "center" }}>
+            <Stack>
+                <Tooltip
+                    title="QR Maker"
+                >
+                    <IconButton
+                        onClick={() => setOpen(true)}
+                    >
+                        <QrCodeIcon sx={{ fontSize: "20vmin" }} />
+                    </IconButton>
+                </Tooltip>
+                <Typography align="center">
+                    QR Maker
+                </Typography>
+                <QRMakerDialog
                     open={open}
                     close={close}
                 />
@@ -167,11 +197,7 @@ function HomePage(props) {
                 title="Spare Parts"
                 icon={<ConstructionIcon sx={{ fontSize: "20vmin" }} />}
             />
-            <AppButton
-                disabled
-                title="QR Maker"
-                icon={<QrCodeIcon sx={{ fontSize: "20vmin" }} />}
-            />
+            <QRMakerButton />
         </Grid>
 
     )

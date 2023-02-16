@@ -2,13 +2,13 @@
 import React from 'react'
 
 // MUI
-import { Avatar, Box, Button, Card, CardActions, CardHeader, Dialog, DialogActions, DialogContent, DialogTitle, Grid, TextField, Tooltip, useTheme } from '@mui/material'
+import { Avatar, Box, Button, Card, CardActions, CardHeader, Dialog, DialogActions, DialogContent, DialogTitle, Grid, TextField, Tooltip, Typography, useTheme } from '@mui/material'
 
 // react router
 import { useSearchParams } from 'react-router-dom'
 
 function IssuePartsDialog(props) {
-    const {open, close, quantity, setQuantity} = props
+    const {open, close, quantity, setQuantity, name} = props
     const [input, setInput] = React.useState('')
 
     function handleClose() {
@@ -32,10 +32,16 @@ function IssuePartsDialog(props) {
             <DialogTitle
                 align="center"
             >
-                Issue Items
+                <Typography variant="h4">
+                    Issue Items
+                </Typography>
+                <Typography variant="subtitle1">
+                    {name}
+                </Typography>
             </DialogTitle>
             <DialogContent>
                 <TextField
+                    fullWidth
                     sx={{marginTop: 1}}
                     required
                     error={Boolean(input && !isValid)}
@@ -144,6 +150,7 @@ function SparePartCard(props) {
                 close={() => setOpen(false)}
                 quantity={stateQuantity}
                 setQuantity={setStateQuantity}
+                name={name}
             />
         </Grid>
     )

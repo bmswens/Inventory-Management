@@ -17,6 +17,7 @@ function CameraDialog(props) {
             console.log(result)
             try {
                 let data = JSON.parse(result)
+                console.log(data)
                 if (callback) {
                     callback(data)
                     close()
@@ -27,6 +28,10 @@ function CameraDialog(props) {
                 }
                 else if (data.nsn) {
                     navigate(`/items/${data.nsn}`)
+                    close()
+                }
+                else if (data.bin && data.route === "spare-parts") {
+                    navigate(`/spare-parts?bin=${data.bin}`)
                     close()
                 }
             }
