@@ -1,6 +1,6 @@
 # build stage
 FROM node:16 as build
-ENV REACT_APP_ENV DOCKER
+ENV REACT_APP_ENV=DOCKER
 
 WORKDIR /app
 COPY ./package.json ./
