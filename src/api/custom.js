@@ -46,6 +46,9 @@ async function getAllSpareParts() {
 async function updateSparePart(bin, data) {
     let resp = await fetch(`/api/spare-parts/${bin}`, {
         method: "POST",
+        headers: {
+            "content-type": "application/json"
+        },
         body: JSON.stringify(data)
     })
     return resp.ok

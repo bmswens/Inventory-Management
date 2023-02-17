@@ -29,9 +29,9 @@ function IssuePartsDialog(props) {
 
     const isValid = !Number.isNaN(Number(input)) && Number(input) <= Number(quantity)
 
-    function submit() {
+    async function submit() {
         let current = Number(quantity) - Number(input)
-        api.spareParts.update(bin, {quantity: current})
+        await api.spareParts.update(bin, {quantity: current})
         setQuantity(current)
         handleClose()
     }
