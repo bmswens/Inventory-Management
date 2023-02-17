@@ -6,7 +6,7 @@ WORKDIR /app
 COPY ./package.json ./
 COPY ./package-lock.json ./
 RUN npm config set fetch-retry-maxtimeout=300000
-RUN npm install 
+RUN npm install --force
 COPY . ./
 RUN npm run build
 
