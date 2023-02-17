@@ -7,8 +7,18 @@ import { Avatar, Box, Button, Card, CardActions, CardHeader, Dialog, DialogActio
 // react router
 import { useSearchParams } from 'react-router-dom'
 
+// custom
+import { SparePartsSearchContext } from './SpareParts'
+
 function IssuePartsDialog(props) {
-    const {open, close, quantity, setQuantity, name} = props
+    const {
+        open, 
+        close, 
+        quantity, 
+        setQuantity, 
+        name,
+        bin
+    } = props
     const [input, setInput] = React.useState('')
 
     function handleClose() {
@@ -28,6 +38,8 @@ function IssuePartsDialog(props) {
         <Dialog
             open={open}
             onClose={handleClose}
+            maxWidth="md"
+            fullWidth
         >
             <DialogTitle
                 align="center"
@@ -35,17 +47,35 @@ function IssuePartsDialog(props) {
                 <Typography variant="h4">
                     Issue Items
                 </Typography>
-                <Typography variant="subtitle1">
-                    {name}
-                </Typography>
             </DialogTitle>
             <DialogContent>
                 <TextField
                     fullWidth
                     sx={{marginTop: 1}}
+                    label="Name"
+                    value={name}
+                    disabled
+                />
+                <TextField
+                    fullWidth
+                    sx={{marginTop: 1}}
+                    label="Bin"
+                    value={bin}
+                    disabled
+                />
+                <TextField
+                    fullWidth
+                    sx={{marginTop: 1}}
+                    label="In Stock"
+                    value={quantity}
+                    disabled
+                />
+                <TextField
+                    fullWidth
+                    sx={{marginTop: 1}}
                     required
                     error={Boolean(input && !isValid)}
-                    label="Quantity"
+                    label="Issue Amount"
                     value={input}
                     onChange={event => setInput(event.target.value)}
                     helperText="Must be a whole number."
@@ -127,6 +157,17 @@ function SparePartCard(props) {
         }
     }, [params, bin])
 
+    // search 
+    const context = React.useContext(SparePartsSearchContext)
+    if (context.text) {
+        let text = context.text.toLowerCase()
+        let lName = name.toLowerCase()
+        let lBin = bin.toLowerCase()
+        if (!lName.includes(text) && !lBin.includes(text)) {
+            return null
+        }
+    }
+
     return (
         <Grid item xs={12}>
             <Card>
@@ -151,6 +192,7 @@ function SparePartCard(props) {
                 quantity={stateQuantity}
                 setQuantity={setStateQuantity}
                 name={name}
+                bin={bin}
             />
         </Grid>
     )

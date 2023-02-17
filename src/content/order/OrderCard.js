@@ -79,49 +79,6 @@ function OrderCardBody(props) {
     )
 }
 
-function ScanOrderButton(props) {
-    const {name, completed, setCompleted, disabled } = props
-    function callback(data) {
-        if (!data.name) {
-            alert("Bad QR code")
-        }
-        else if (data.name !== name) {
-            alert("Wrong Order!")
-        }
-        else if (data.name === name) {
-            setCompleted()
-        }
-    }
-
-    function handleClick() {
-        setOpen(true)
-    }
-
-    const [open, setOpen] = React.useState(false)
-    function close() {
-        setOpen(false)
-    }
-
-    return (
-        <>
-        <Button
-            variant='contained'
-            disabled={completed || disabled}
-            endIcon={completed ? <CheckIcon /> : <QrCodeScannerIcon />}
-            color={completed ? "success" : "primary"}
-            onClick={handleClick}
-        >
-            Scan Order
-        </Button>
-        <CameraDialog
-            callback={callback}
-            open={open}
-            close={close}
-        />
-        </>
-    )
-}
-
 function ScanItemsButton(props) {
     const { nsn, ready, completed, setCompleted } = props
     const disabled = !ready || completed
@@ -221,7 +178,6 @@ function OrderCard(props) {
     } = api.items.getByNSN(nsn)
 
     // completion status
-    const [orderScanned, setOrderScanned] = React.useState(false)
     const [itemScanned, setItemScanned] = React.useState(false)
     const [binScanned, setBinScanned] = React.useState(false)
 
@@ -241,16 +197,9 @@ function OrderCard(props) {
                     location={location}
                 />
                 <CardActions>
-                    <ScanOrderButton
-                        name={name}
-                        disabled={completedDisplay}
-                        completed={completedDisplay || orderScanned}
-                        setCompleted={() => setOrderScanned(true)}
-                    />
-                    <Box sx={{flexGrow: 1}} />
                     <ScanItemsButton
                         nsn={nsn}
-                        ready={orderScanned}
+                        ready
                         disabled={completedDisplay}
                         completed={completedDisplay || itemScanned}
                         setCompleted={() => setItemScanned(true)}
