@@ -11,7 +11,7 @@ import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner'
 import CheckIcon from '@mui/icons-material/Check'
 
 // custom
-import api from '../../api/demo'
+import api from '../../api'
 import CameraDialog from '../../dialog/CameraDialog'
 
 function CompletedAvatar(props) {

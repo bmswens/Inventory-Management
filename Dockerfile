@@ -1,5 +1,6 @@
 # build stage
 FROM node:16 as build
+ENV REACT_APP_ENV DOCKER
 
 WORKDIR /app
 COPY ./package.json ./
@@ -14,7 +15,6 @@ FROM node:16
 
 LABEL maintainer="bmswens@gmail.com"
 EXPOSE 3000
-ENV NODE_ENV DOCKER
 
 WORKDIR /app
 

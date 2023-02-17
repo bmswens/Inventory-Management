@@ -6,7 +6,7 @@ import { Card, CardContent, Grid, TextField } from '@mui/material'
 
 
 // custom
-import api from '../../api/demo'
+import api from '../../api'
 import SparePartCard from './SparePartCard'
 
 

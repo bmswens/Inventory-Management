@@ -6,7 +6,7 @@ import { Grid } from '@mui/material'
 
 // custom
 import ItemCard from './ItemCard'
-import api from '../../api/demo'
+import api from '../../api'
 
 function AllItems(props) {
 

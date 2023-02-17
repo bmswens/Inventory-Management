@@ -12,7 +12,7 @@ import CheckIcon from '@mui/icons-material/Check'
 import { useParams } from 'react-router-dom'
 
 // custom
-import api from '../../api/demo'
+import api from '../../api'
 import CameraDialog from '../../dialog/CameraDialog'
 
 

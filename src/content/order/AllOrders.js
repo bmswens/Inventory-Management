@@ -5,7 +5,7 @@ import React from 'react'
 import { Grid } from '@mui/material'
 
 // custom
-import api from '../../api/demo'
+import api from '../../api'
 import OrderCard from './OrderCard'
 
 function AllOrders(props) {

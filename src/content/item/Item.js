@@ -8,7 +8,7 @@ import { Box, Divider, Grid, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
 
 // custom
-import api from '../../api/demo'
+import api from '../../api'
 
 function ItemTitle(props) {
     const { name } = props

@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 
-const basename = process.env.NODE_ENV === 'DOCKER' ? "" : '/Inventory-Management/'
+const basename = process.env.REACT_APP_ENV === 'DOCKER' ? "" : '/Inventory-Management/'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
