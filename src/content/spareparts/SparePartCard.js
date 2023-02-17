@@ -9,6 +9,7 @@ import { useSearchParams } from 'react-router-dom'
 
 // custom
 import { SparePartsSearchContext } from './SpareParts'
+import api from '../../api'
 
 function IssuePartsDialog(props) {
     const {
@@ -26,11 +27,12 @@ function IssuePartsDialog(props) {
         close()
     }
 
-
     const isValid = !Number.isNaN(Number(input)) && Number(input) <= Number(quantity)
 
     function submit() {
-        setQuantity(Number(quantity) - Number(input))
+        let current = Number(quantity) - Number(input)
+        api.spareParts.update(bin, {quantity: current})
+        setQuantity(current)
         handleClose()
     }
 

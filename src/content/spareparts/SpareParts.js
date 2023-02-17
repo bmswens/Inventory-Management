@@ -38,7 +38,14 @@ function SparePartsSearch(props) {
 
 function SpareParts(props) {
 
-    let parts = api.spareParts.getAll()
+    const [parts, setParts] = React.useState([])
+    React.useEffect(() => {
+        async function load() {
+            let p = await api.spareParts.getAll()
+            setParts(p)
+        }
+        load()
+    }, [])
 
     return (
         <Grid

@@ -51,7 +51,8 @@ const api = {
         getByName: getOrderByName
     },
     spareParts: {
-        getAll: getAllSpareParts
+        getAll: getAllSpareParts,
+        update: (bin, data) => {}
     }
 }
 
