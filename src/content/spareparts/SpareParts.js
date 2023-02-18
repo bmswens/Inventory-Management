@@ -4,6 +4,8 @@ import React from 'react'
 // MUI
 import { Card, CardContent, Grid, TextField } from '@mui/material'
 
+// react router
+import { useSearchParams } from 'react-router-dom'
 
 // custom
 import api from '../../api'
@@ -15,6 +17,16 @@ const SparePartsSearchContext = React.createContext({text: ""})
 function SparePartsSearch(props) {
 
     const [text, setText] = React.useState("")
+
+    // URL stuff
+    const [params] = useSearchParams()
+
+    React.useEffect(() => {
+        if (params.get("bin")) {
+            setText(params.get("bin"))
+        }
+    }, [params])
+
 
     return (
         <SparePartsSearchContext.Provider value={{text}}>
