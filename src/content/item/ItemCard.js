@@ -99,7 +99,7 @@ function ItemCard(props) {
         svcBal
     } = props
 
-    console.log(props)
+
 
     return (
         <Grid item xs={12} md={6}>

@@ -17,7 +17,6 @@ function CameraDialog(props) {
             console.log(result)
             try {
                 let data = JSON.parse(result)
-                console.log(data)
                 if (callback) {
                     callback(data)
                     close()
