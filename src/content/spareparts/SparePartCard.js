@@ -36,7 +36,7 @@ function IssuePartsDialog(props) {
         close()
     }
 
-    const isValid = !Number.isNaN(Number(input)) && Number(input) <= Number(quantity)
+    const isValid = !Number.isNaN(Number(input)) && add ? true : Number(input) <= Number(quantity)
 
     async function submit() {
         let n = Number(input)
