@@ -93,11 +93,13 @@ function EditPartDialog(props) {
             </DialogContent>
             <DialogActions>
                 <Button
+                    variant="contained"
                     onClick={handleClose}
                 >
                     Close
                 </Button>
                 <Button
+                    variant="contained"
                     onClick={submit}
                     disabled={!quantityValid}
                 >
