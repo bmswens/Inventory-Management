@@ -2,7 +2,7 @@
 import React from 'react'
 
 // MUI
-import { Avatar, Box, Card, CardActions, CardHeader, CardMedia, Grid, IconButton, Tooltip, useTheme } from '@mui/material'
+import { Avatar, Box, Card, CardActions, CardHeader, Grid, IconButton, Tooltip, useTheme } from '@mui/material'
 
 // MUI Icons
 import InputIcon from '@mui/icons-material/Input'
@@ -96,30 +96,22 @@ function ItemCard(props) {
     const {
         name,
         nsn,
-        img,
-        stock
+        svcBal
     } = props
 
+    console.log(props)
+
     return (
-        <Grid item xs={12} md={6} lg={3}>
+        <Grid item xs={12} md={6}>
             <Card>
                 <ItemCardHeader
                     name={name}
                     nsn={nsn}
-                    stock={stock}
+                    stock={svcBal}
                 />
                 <Box
                     sx={{ display:'flex', justifyContent:'center' }}
                 >
-                    <CardMedia
-                        component="img"
-                        image={process.env.PUBLIC_URL +  img}
-                        alt={name}
-                        sx={{
-                            height: "20vh",
-                            width: "auto"
-                        }}
-                    />
                 </Box>
                 <ItemCardActions
                     nsn={nsn}

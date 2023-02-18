@@ -7,13 +7,7 @@ function getAll() {
     let output = []
     for (let nsn in items) {
         let fullItem = items[nsn]
-        let item = {
-            nsn: fullItem.nsn,
-            name: fullItem.name,
-            img: fullItem.img,
-            stock: fullItem.stock
-        }
-        output.push(item)
+        output.push(fullItem)
     }
     return output
 }
