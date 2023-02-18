@@ -23,9 +23,9 @@ function StockAvatar(props) {
                 sx={{
                     backgroundColor: stock ?  theme.palette.success.dark : theme.palette.error.dark
                 }}
-                alt="stock count 3"
+                alt={stock ? "in stock" : "out of stock"}
             >   
-                {stock}
+                {String(stock)}
             </Avatar>
         </Tooltip>
     )

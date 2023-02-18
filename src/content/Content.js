@@ -24,10 +24,6 @@ function Content(props) {
                 element={<AllItems />}
             />
             <Route
-                path="/items/:nsn"
-                element={<Item />}
-            />
-            <Route
                 path="/pull"
                 element={<AllOrders />}
             />
