@@ -26,6 +26,7 @@ function CompletedAvatar(props) {
                     backgroundColor: completed ?  theme.palette.success.dark : theme.palette.error.dark
                 }}
                 alt="completion status"
+                data-testid={completed ? "task complete" : "task open"}
             >   
                 { completed ? <DoneIcon fontSize="large" /> : <PriorityHighIcon fontSize="large" /> }
             </Avatar>

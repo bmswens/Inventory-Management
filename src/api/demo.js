@@ -13,6 +13,9 @@ function getAll() {
 }
 
 function getByNSN(nsn) {
+    if (!nsn) {
+        return {}
+    }
     return items[nsn]
 }
 
