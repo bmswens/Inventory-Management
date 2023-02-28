@@ -1,4 +1,15 @@
 {
+    "J521cc3052405":{
+        "name": "J521cc3052405",
+        "completed": false,
+        "nsn": "1680014888413VM",
+        "location":"01H002A001",
+        "quantity": 1,
+        "price": 32636.00,
+        "shipFrom": "FB4661",
+        "shipTo": "",
+        "UI": "EA" 
+    },
     "1348-2312": {
         "name": "1348-2312",
         "completed": false,

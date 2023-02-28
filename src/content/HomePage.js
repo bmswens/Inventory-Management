@@ -152,7 +152,7 @@ function HomePage(props) {
                 icon={<DownloadIcon sx={{ fontSize: "20vmin" }} />}
             />
             <AppButton
-                disabled
+                link="/put-away"
                 title="Put Away"
                 icon={<ExitToAppIcon sx={{ fontSize: "20vmin" }} />}
             />

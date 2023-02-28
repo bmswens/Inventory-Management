@@ -5,12 +5,10 @@ import React from 'react'
 import { Avatar, Box, Card, CardActions, CardHeader, Grid, IconButton, Tooltip, useTheme } from '@mui/material'
 
 // MUI Icons
-import InputIcon from '@mui/icons-material/Input'
-import LocalShippingIcon from '@mui/icons-material/LocalShipping'
-import OpenInNewIcon from '@mui/icons-material/OpenInNew'
-
-// React router
-import { Link } from 'react-router-dom'
+import InfoIcon from '@mui/icons-material/Info'
+import QrCode2Icon from '@mui/icons-material/QrCode2'
+import ItemInfoDialog from './ItemInfoDialog'
+import QRMakerDialog from '../../dialog/QRMakerDialog'
 
 function StockAvatar(props) {
     const { stock } = props
@@ -48,45 +46,46 @@ function ItemCardHeader(props) {
 }
 
 function ItemCardActions(props) {
-    
-    const { nsn } = props
+
+    const [infoOpen, setInfoOpen] = React.useState(false)
+    const [qrOpen, setQrOpen] = React.useState(false)
 
     return (
         <CardActions>
             <Tooltip
-                title="Add To Stock"
+                title="Info"
             >
                 <span>
                     <IconButton
-                        aria-label="Add To Stock"
+                        aria-label="Info"
+                        onClick={() => setInfoOpen(true)}
                     >
-                        <InputIcon fontSize='large' />
-                    </IconButton>
-                </span>
-            </Tooltip>
-            <Tooltip
-                title="Process Order"
-            >
-                <span>
-                    <IconButton
-                        aria-label="Process Order"
-                    >
-                        <LocalShippingIcon fontSize='large' />
+                        <InfoIcon fontSize='large' />
                     </IconButton>
                 </span>
             </Tooltip>
             <Box sx={{flexGrow: 1}} />
             <Tooltip
-                title="View Details"
+                title="Show QR Code"
             >
-                <Link to={`/items/${nsn}`}>
-                    <IconButton
-                        aria-label="View Details"
-                    >
-                        <OpenInNewIcon fontSize='large' />
-                    </IconButton>
-                </Link>
+                <IconButton
+                    aria-label="Show QR Code"
+                    onClick={() => setQrOpen(true)}
+                >
+                    <QrCode2Icon fontSize='large' />
+                </IconButton>
             </Tooltip>
+            {/* Dialogs */}
+            <ItemInfoDialog
+                open={infoOpen}
+                close={() => setInfoOpen(false)}
+                {...props}
+            />
+            <QRMakerDialog
+                open={qrOpen}
+                close={() => setQrOpen(false)}
+                data={JSON.stringify({nsn: props.nsn}, null, 2)}
+            />
         </CardActions>
     )
 }
@@ -102,7 +101,7 @@ function ItemCard(props) {
 
 
     return (
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12}>
             <Card>
                 <ItemCardHeader
                     name={name}
@@ -114,7 +113,7 @@ function ItemCard(props) {
                 >
                 </Box>
                 <ItemCardActions
-                    nsn={nsn}
+                    {...props}
                 />
             </Card>
         </Grid>

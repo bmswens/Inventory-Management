@@ -1,0 +1,16 @@
+{
+    "FB466130400810": {
+        "name": "FB466130400810",
+        "completed": false,
+        "nsn": "1560013119052EK",
+        "quantity": 2,
+        "quantityToBin": 1,
+        "price": 38906.00,
+        "shipFrom": "FB4690",
+        "shipTo": "FB4661",
+        "finalBin": "01H002A005",
+        "typeCargoCode":"GeneralCargo",
+        "UI": "EA" 
+    }
+}
+    

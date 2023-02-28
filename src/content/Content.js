@@ -6,10 +6,10 @@ import { Route, Routes } from 'react-router-dom'
 
 // custom
 import AllItems from './item/AllItems'
-import Item from './item/Item'
 import HomePage from './HomePage'
 import AllOrders from './order/AllOrders'
 import SpareParts from './spareparts/SpareParts'
+import AllPutAways from './putaway/AllPutAways'
 
 function Content(props) {
 
@@ -30,6 +30,10 @@ function Content(props) {
             <Route
                 path="/spare-parts"
                 element={<SpareParts />}
+            />
+            <Route
+                path="/put-away"
+                element={<AllPutAways />}
             />
         </Routes>
     )

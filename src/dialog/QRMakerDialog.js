@@ -12,10 +12,11 @@ function QRMakerDialog(props) {
 
     const {
         open,
-        close
+        close,
+        data
     } = props
 
-    const [input, setInput] = React.useState('')
+    const [input, setInput] = React.useState(data || '')
 
     function handleClose() {
         setInput('')
@@ -52,6 +53,7 @@ function QRMakerDialog(props) {
                         logoWidth={250 * .3}
                     />
                     <TextField
+                        disabled={data}
                         fullWidth
                         label="Data"
                         multiline

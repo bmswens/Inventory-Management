@@ -1,6 +1,7 @@
 import items from './items.json'
 import orders from './orders.json'
 import spareParts from './spareparts.json'
+import puts from './putaways.json'
 
 // items
 function getAll() {
@@ -38,6 +39,15 @@ function getAllSpareParts() {
     return spareParts
 }
 
+// put away
+function getAllPuts() {
+    let output = []
+    for (let item in puts) {
+        output.push(puts[item])
+    }
+    return output
+}
+
 const api = {
     items: {
         getAll,
@@ -50,6 +60,9 @@ const api = {
     spareParts: {
         getAll: getAllSpareParts,
         update: (bin, data) => {}
+    },
+    putAways: {
+        getAll: getAllPuts
     }
 }
 

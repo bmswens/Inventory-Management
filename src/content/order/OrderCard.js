@@ -54,7 +54,8 @@ function OrderCardBody(props) {
     const {
         quantity,
         unit,
-        location
+        location,
+        finalBin
     } = props
 
     return (
@@ -73,6 +74,11 @@ function OrderCardBody(props) {
                 <Grid item xs={4}>
                     <Typography align="center">
                         Location: {location}
+                    </Typography>
+                </Grid>
+                <Grid item xs={4}>
+                    <Typography align="center">
+                        Final Bin: {finalBin}
                     </Typography>
                 </Grid>
             </Grid>
@@ -170,7 +176,8 @@ function OrderCard(props) {
         completed,
         name,
         nsn,
-        quantity
+        quantity,
+        finalBin
     } = props
 
     const {
@@ -181,6 +188,7 @@ function OrderCard(props) {
     // completion status
     const [itemScanned, setItemScanned] = React.useState(false)
     const [binScanned, setBinScanned] = React.useState(false)
+    const [bin, setBin] = React.useState(finalBin)
 
     let completedDisplay = completed || (itemScanned && binScanned)
 
@@ -196,6 +204,7 @@ function OrderCard(props) {
                     quantity={quantity}
                     unit={unit}
                     location={location}
+                    finalBin={bin}
                 />
                 <CardActions>
                     <ScanItemsButton
@@ -209,7 +218,7 @@ function OrderCard(props) {
                     <ScanFinalBinButton
                         ready={itemScanned}
                         completed={completedDisplay || binScanned}
-                        setCompleted={() => {setBinScanned(true)}}
+                        setCompleted={(b) => {setBinScanned(true); setBin(b)}}
                     />
                 </CardActions>
             </Card>
@@ -219,3 +228,7 @@ function OrderCard(props) {
 }
 
 export default OrderCard
+export {
+    CompletedAvatar,
+    OrderCardHeader
+}
