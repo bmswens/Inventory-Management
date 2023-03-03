@@ -2,7 +2,7 @@
 import React from 'react'
 
 // MUI
-import { Dialog, DialogContent, DialogTitle } from '@mui/material'
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material'
 import QrReader from 'react-qr-reader'
 import { useNavigate } from 'react-router-dom'
 
@@ -73,6 +73,14 @@ function CameraDialog(props) {
                     null
                 }
             </DialogContent>
+            <DialogActions>
+                <Button
+                    onClick={close}
+                    variant="contained"
+                >
+                    Close
+                </Button>
+            </DialogActions>
         </Dialog>
     )
 }

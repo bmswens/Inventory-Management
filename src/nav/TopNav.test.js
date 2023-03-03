@@ -1,13 +1,23 @@
 // testing help
-import { render } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { BrowserRouter } from 'react-router-dom'
 
 // to test
 import TopNav from './TopNav'
 
 describe('<TopNav>', function() {
-    it("doesn't do much... yet", function() {
+    it("should open the QR scanner dialog", function() {
         render(
-            <TopNav />
+            <BrowserRouter>
+                <TopNav />
+            </BrowserRouter>
         )
-    })
+        let button = screen.getByRole("button", { name: "Open QR Scanner"})
+        userEvent.click(button)
+        let dialog = screen.getByRole("dialog")
+        expect(dialog).not.toBeNull()
+        let closeButton = screen.getByRole("button", { name: "Close"})
+        userEvent.click(closeButton)
+    }) 
 })

@@ -25,6 +25,7 @@ function QRButton(props) {
             >
                 <IconButton
                     onClick={() => setOpen(true)}
+                    aria-label="Open QR Scanner"
                 >
                     <QrCodeScannerIcon fontSize="large" />
                 </IconButton>
