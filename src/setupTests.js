@@ -5,3 +5,4 @@
 import '@testing-library/jest-dom';
 
 jest.mock("react-qr-reader")
+jest.mock("react-qrcode-logo")

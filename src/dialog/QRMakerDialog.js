@@ -25,8 +25,12 @@ function QRMakerDialog(props) {
 
     function download() {
         const qrCodeCanvas = document.getElementById("react-qrcode-logo")
-        const link = document.createElement('a'); link.href = qrCodeCanvas.toDataURL()
+        const link = document.createElement('a')
+        link.href = qrCodeCanvas.toDataURL()
+        link.id = "qr-code-download"
         link.download = 'qrcode.png'
+        link.display = "none"
+        document.body.appendChild(link)
         link.click()
     }
 
@@ -53,7 +57,7 @@ function QRMakerDialog(props) {
                         logoWidth={250 * .3}
                     />
                     <TextField
-                        disabled={data}
+                        disabled={Boolean(data)}
                         fullWidth
                         label="Data"
                         multiline
