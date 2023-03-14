@@ -10,6 +10,7 @@ import HomePage from './HomePage'
 import AllOrders from './order/AllOrders'
 import SpareParts from './spareparts/SpareParts'
 import AllPutAways from './putaway/AllPutAways'
+import ManifestPage from './manifests/ManifestPage'
 
 function Content(props) {
 
@@ -34,6 +35,10 @@ function Content(props) {
             <Route
                 path="/put-away"
                 element={<AllPutAways />}
+            />
+            <Route
+                path="/manifests/:id"
+                element={<ManifestPage />}
             />
         </Routes>
     )
