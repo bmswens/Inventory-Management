@@ -8,6 +8,8 @@ import { Box, Button, Dialog, DialogActions, DialogContent, DialogTitle } from '
 // lifesaver
 import { useZxing } from "react-zxing";
 
+
+
 function BarcodeDialog(props) {
 
     const { open, close, validate, callback } = props
@@ -31,7 +33,8 @@ function BarcodeDialog(props) {
         constraints: {
             video: {
                 aspectRatio: {ideal: 1},
-                facingMode: "environment"
+                facingMode: "environment",
+                focusMode: "continuous"
             }
         }
     })

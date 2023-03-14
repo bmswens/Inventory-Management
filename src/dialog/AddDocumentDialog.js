@@ -6,28 +6,46 @@ import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import BarcodeDialog from './BarcodeDialog';
 import local from '../api/local';
 
-function isValidDocID(text) {
-    if (!text) {
-        return false
-    }
-    if (text.length !== 15) {
-        return false
-    }
-    return true
+function handle7Q(text) {
+    return [text.match(/\d*/)[0], text.match(/\D.*/)[0]]
 }
 
-function isValidNSN(text) {
-    if (text.length !== 13 && text.length !== 15) {
-        return false
+function getPDF417Data(text) {
+    const identifiers = {
+        "12S": "docId",
+        "N": "nsn",
+        "7Q": "unit",
+        "B6": "distribution",
+        "2R": "condition",
+        "12Q": "money",
+        "38": "name",
+        "32": "delivery"
     }
-    return true
+    for (let identifier in identifiers) {
+        if (text.startsWith(identifier)) {
+            return [identifiers[identifier], text.replace(identifier, '')]
+        }
+    }
+    return []
 }
 
-function isValidThird(text) {
-    if (text.length !== 17) {
-        return false
+function clean(text) {
+    let output = []
+    let newString = ''
+    text = text.replace('[)>', '')
+    console.log(text)
+    for (let char of text) {
+        if (char.match(/[\w,,,., ]/g)) {
+            newString += char
+        }
+        else {
+            if (newString) {
+                output.push(newString)
+            }
+            newString = ''
+        }
     }
-    return true
+    return output
 }
 
 function AddDocumentDialog(props) {
@@ -41,50 +59,32 @@ function AddDocumentDialog(props) {
     const [dialogProps, setDialogProps] = React.useState({})
     const [scannerOpen, setScannerOpen] = React.useState(false)
 
-    const [docId, setDocId] = React.useState('')
-    const [nsn, setNsn] = React.useState('')
-    const [unit, setUnit] = React.useState('')
-    const [quantity, setQuantity] = React.useState('')
-    const [condition, setCondition] = React.useState('')
-    const [distribution, setDistribution] = React.useState('')
-    const [money, setMoney] = React.useState('')
+    const [scan, setScan] = React.useState('')
+    const [data, setData] = React.useState({})
 
     function handleScanDoc() {
         setDialogProps({
-            validate: isValidDocID,
+            validate: null,
             callback: text => {
-                setDocId(text)
-                reopen()
-            }
-        })
-        close()
-        setScannerOpen(true)
-    }
-
-    function handleScanNsn() {
-        setDialogProps({
-            validate: isValidNSN,
-            callback: text => {
-                setNsn(text)
-                reopen()
-            }
-        })
-        close()
-        setScannerOpen(true)
-    }
-
-    function handleScanThird() {
-        setDialogProps({
-            validate: isValidThird,
-            callback: text => {
-                setUnit(text.slice(0, 2))
-                setQuantity(text.slice(2, 7))
-                setCondition(text.slice(7, 8))
-                setDistribution(text.slice(8, 10))
-                let dollars = text.slice(10, 15)
-                let cents = text.slice(15)
-                let m = `${dollars}.${cents}`
-                setMoney(m)
+                text = clean(text)
+                let d = {}
+                for (let t of text) {
+                    let resp = getPDF417Data(t)
+                    if (!resp.length) {
+                        continue
+                    }
+                    let [key, value] = resp
+                    if (key === "unit") {
+                        let [quantity, unit] = handle7Q(value)
+                        d.quantity = quantity
+                        d.unit = unit
+                    }
+                    else {
+                        d[key] = value
+                    }
+                }
+                console.log(d)
+                setData(d)
                 reopen()
             }
         })
@@ -93,33 +93,38 @@ function AddDocumentDialog(props) {
     }
 
     async function submit() {
-        await local.documents.add({
-            id: docId,
-            nsn: nsn,
-            unit: unit,
-            quantity: quantity,
-            condition: condition,
-            distribution: distribution
-        })
-        await local.manifests.addDocument(manifestId, docId)
+        data.id = data.docId
+        console.log(data)
+        await local.documents.add(data)
+        await local.manifests.addDocument(manifestId, data.docId)
         reset()
     }
 
     function reset() {
-        setDocId('')
-        setNsn('')
-        setUnit('')
-        setQuantity('')
-        setDistribution('')
-        setCondition('')
-        setMoney('')
+        setData({})
+        setScan({})
     }
 
     function handleClose() {
         reset()
         close()
     }
-    
+
+    React.useEffect(() => {
+        let text = scan
+        let d = {}
+        d.unit = text.slice(0, 2)
+        d.quantity = text.slice(2, 7)
+        d.condition = text.slice(7, 8)
+        d.distribution = text.slice(8, 10)
+        let dollars = text.slice(10, 15)
+        let cents = text.slice(15)
+        let m = `${dollars}.${cents}`
+        d.money = m
+        console.log(d)
+        setData({...data, ...d})
+    }, [scan, data])
+
     return (
         <>
             <Dialog
@@ -135,76 +140,70 @@ function AddDocumentDialog(props) {
                 <DialogContent>
                     <Stack
                         spacing={1}
-                        sx={{marginTop: 1}}
+                        sx={{ marginTop: 1 }}
                     >
                         <Button
-                            disabled={Boolean(docId)}
+                            disabled={Boolean(data.docId)}
                             fullWidth
                             variant="contained"
                             endIcon={<QrCodeScannerIcon />}
                             onClick={handleScanDoc}
                         >
-                            Scan Document ID
+                            Scan Document
                         </Button>
                         <TextField
                             fullWidth
-                            disabled
                             label="Document ID"
-                            value={docId}
+                            value={data.docId}
+                            onChange={event => setData({...data, docId: event.target.value})}
                         />
-                        <Button
-                            disabled={Boolean(nsn)}
-                            fullWidth
-                            variant="contained"
-                            endIcon={<QrCodeScannerIcon />}
-                            onClick={handleScanNsn}
-                        >
-                            Scan NSN
-                        </Button>
                         <TextField
                             fullWidth
-                            disabled
                             label="NSN"
-                            value={nsn}
+                            value={data.nsn}
+                            onChange={event => setData({...data, nsn: event.target.value})}
                         />
-                        <Button
-                            disabled={Boolean(unit)}
+                        <TextField
                             fullWidth
-                            variant="contained"
-                            endIcon={<QrCodeScannerIcon />}
-                            onClick={handleScanThird}
-                        >
-                            Scan Third Barcode
-                        </Button>
+                            label="Third Barcode"
+                            value={scan}
+                            onChange={event => setScan(event.target.value.trim())}
+                        />
                         <TextField
                             fullWidth
                             disabled
                             label="Unit of Measure"
-                            value={unit}
+                            value={data.unit}
                         />
                         <TextField
                             fullWidth
                             disabled
                             label="Quantity"
-                            value={quantity}
+                            value={data.quantity}
                         />
                         <TextField
                             fullWidth
                             disabled
                             label="Condition"
-                            value={condition}
+                            value={data.condition}
                         />
                         <TextField
                             fullWidth
                             disabled
-                            label="distribution"
-                            value={distribution}
+                            label="Distribution"
+                            value={data.distribution}
                         />
                         <TextField
                             fullWidth
                             disabled
                             label="Cost"
-                            value={money}
+                            value={data.money}
+                        />
+                        <TextField
+                            fullWidth
+                            disabled
+                            label="Prioirty"
+                            value={data.priority}
                         />
                     </Stack>
                 </DialogContent>
