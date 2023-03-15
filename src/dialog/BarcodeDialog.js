@@ -34,7 +34,7 @@ function BarcodeDialog(props) {
             video: {
                 aspectRatio: {ideal: 1},
                 facingMode: "environment",
-                focusMode: "continuous"
+                focusMode: "auto"
             }
         }
     })

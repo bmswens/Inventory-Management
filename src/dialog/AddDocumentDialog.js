@@ -1,5 +1,5 @@
 // React
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, TextField } from '@mui/material'
+import { Box, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, Stack, TextField } from '@mui/material'
 import React from 'react'
 
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
@@ -60,7 +60,12 @@ function AddDocumentDialog(props) {
     const [scannerOpen, setScannerOpen] = React.useState(false)
 
     const [scan, setScan] = React.useState('')
-    const [data, setData] = React.useState({})
+    const [data, setData] = React.useState({
+        name: '',
+        nsn: '',
+        weight: '',
+        micap: false
+    })
 
     function handleScanDoc() {
         setDialogProps({
@@ -124,7 +129,7 @@ function AddDocumentDialog(props) {
         let cents = text.slice(15)
         let m = `${dollars}.${cents}`
         d.money = m
-        setData({...data, ...d})
+        setData({ ...data, ...d })
     }, [scan, data])
 
     return (
@@ -157,13 +162,13 @@ function AddDocumentDialog(props) {
                             fullWidth
                             label="Document ID"
                             value={data.docId}
-                            onChange={event => setData({...data, docId: event.target.value})}
+                            onChange={event => setData({ ...data, docId: event.target.value })}
                         />
                         <TextField
                             fullWidth
                             label="NSN"
                             value={data.nsn}
-                            onChange={event => setData({...data, nsn: event.target.value})}
+                            onChange={event => setData({ ...data, nsn: event.target.value })}
                         />
                         <TextField
                             fullWidth
@@ -203,10 +208,23 @@ function AddDocumentDialog(props) {
                         />
                         <TextField
                             fullWidth
-                            disabled
-                            label="Prioirty"
-                            value={data.priority}
+                            label="Weight"
+                            value={data.weight}
+                            onChange={event => setData({ ...data, weight: event.target.value })}
                         />
+                        <Stack direction="row" spacing={1} sx={{ display: "flex" }}>
+                            <Box sx={{ flexGrow: 1 }} />
+                            <FormControlLabel
+                                label="MICAP"
+                                labelPlacement='start'
+                                control={
+                                    <Checkbox
+                                        value={data.micap}
+                                        onChange={event => setData({ ...data, micap: event.target.checked })}
+                                    />
+                                }
+                            />
+                        </Stack>
                     </Stack>
                 </DialogContent>
                 <DialogActions>
