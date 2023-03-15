@@ -101,8 +101,11 @@ function AddDocumentDialog(props) {
     }
 
     function reset() {
-        setData({})
-        setScan({})
+        setScan('')
+        setData({
+            docId: '',
+            nsn: ''
+        })
     }
 
     function handleClose() {
@@ -121,7 +124,6 @@ function AddDocumentDialog(props) {
         let cents = text.slice(15)
         let m = `${dollars}.${cents}`
         d.money = m
-        console.log(d)
         setData({...data, ...d})
     }, [scan, data])
 
