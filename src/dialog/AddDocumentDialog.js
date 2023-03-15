@@ -48,6 +48,15 @@ function clean(text) {
     return output
 }
 
+const emptyData = {
+    name: '',
+    nsn: '',
+    weight: '',
+    micap: false,
+    actualQuantity: '',
+    location: ''
+}
+
 function AddDocumentDialog(props) {
     const {
         open,
@@ -60,12 +69,7 @@ function AddDocumentDialog(props) {
     const [scannerOpen, setScannerOpen] = React.useState(false)
 
     const [scan, setScan] = React.useState('')
-    const [data, setData] = React.useState({
-        name: '',
-        nsn: '',
-        weight: '',
-        micap: false
-    })
+    const [data, setData] = React.useState(emptyData)
 
     function handleScanDoc() {
         setDialogProps({
@@ -107,10 +111,7 @@ function AddDocumentDialog(props) {
 
     function reset() {
         setScan('')
-        setData({
-            docId: '',
-            nsn: ''
-        })
+        setData(emptyData)
     }
 
     function handleClose() {
@@ -123,6 +124,7 @@ function AddDocumentDialog(props) {
         let d = {}
         d.unit = text.slice(0, 2)
         d.quantity = text.slice(2, 7)
+        d.actualQuantity = d.quantity
         d.condition = text.slice(7, 8)
         d.distribution = text.slice(8, 10)
         let dollars = text.slice(10, 15)
@@ -161,12 +163,14 @@ function AddDocumentDialog(props) {
                         <TextField
                             fullWidth
                             label="Document ID"
+                            helperText="First Barcode"
                             value={data.docId}
                             onChange={event => setData({ ...data, docId: event.target.value })}
                         />
                         <TextField
                             fullWidth
                             label="NSN"
+                            helperText="Second Barcode"
                             value={data.nsn}
                             onChange={event => setData({ ...data, nsn: event.target.value })}
                         />
@@ -180,30 +184,35 @@ function AddDocumentDialog(props) {
                             fullWidth
                             disabled
                             label="Unit of Measure"
+                            helperText="Autocompleted from third barcode."
                             value={data.unit}
                         />
                         <TextField
                             fullWidth
                             disabled
                             label="Quantity"
+                            helperText="Autocompleted from third barcode."
                             value={data.quantity}
                         />
                         <TextField
                             fullWidth
                             disabled
                             label="Condition"
+                            helperText="Autocompleted from third barcode."
                             value={data.condition}
                         />
                         <TextField
                             fullWidth
                             disabled
                             label="Distribution"
+                            helperText="Autocompleted from third barcode."
                             value={data.distribution}
                         />
                         <TextField
                             fullWidth
                             disabled
                             label="Cost"
+                            helperText="Autocompleted from third barcode."
                             value={data.money}
                         />
                         <TextField
@@ -211,6 +220,18 @@ function AddDocumentDialog(props) {
                             label="Weight"
                             value={data.weight}
                             onChange={event => setData({ ...data, weight: event.target.value })}
+                        />
+                        <TextField
+                            fullWidth
+                            label="Actual Quantity Recieved"
+                            value={data.actualQuantity}
+                            onChange={event => setData({ ...data, actualQuantity: event.target.value })}
+                        />
+                        <TextField
+                            fullWidth
+                            label="Temp Location"
+                            value={data.location}
+                            onChange={event => setData({ ...data, location: event.target.value })}
                         />
                         <Stack direction="row" spacing={1} sx={{ display: "flex" }}>
                             <Box sx={{ flexGrow: 1 }} />
