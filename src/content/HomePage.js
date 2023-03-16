@@ -177,8 +177,8 @@ function HomePage(props) {
                 icon={<VerifiedUserIcon sx={{ fontSize: "20vmin" }} />}
             />
             <AppButton
-                disabled
                 title="Ship"
+                link="/shipping/x"
                 icon={<LocalShippingIcon sx={{ fontSize: "20vmin" }} />}
             />
             <AppButton

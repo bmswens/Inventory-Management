@@ -17,7 +17,9 @@ function ManifestActions(props) {
     let { id } = useParams()
     const {
         manifestId,
-        complete
+        complete,
+        loadCount,
+        setLoadCount
     } = props
 
     async function handleComplete() {
@@ -25,6 +27,13 @@ function ManifestActions(props) {
     }
 
     const [open, setOpen] = React.useState(false)
+    const [reloadProcessed, setReloadProcessed] = React.useState(true)
+
+    React.useEffect(() => {
+        if (setLoadCount && !reloadProcessed && !open) {
+            setLoadCount(loadCount + 1)
+        }
+    }, [loadCount, setLoadCount, open, reloadProcessed])
 
     if (!id) {
         return (
@@ -60,7 +69,7 @@ function ManifestActions(props) {
             >
                 <IconButton
                     disabled={complete}
-                    onClick={() => setOpen(true)}
+                    onClick={() => {setReloadProcessed(false); setOpen(true)}}
                 >
                     <DocumentScannerIcon fontSize="large" />
                 </IconButton>
@@ -79,7 +88,9 @@ function ManifestActions(props) {
 function ManifestCard(props) {
     const {
         id,
-        complete
+        complete,
+        setLoadCount,
+        loadCount
     } = props
 
     const theme = useTheme()
@@ -110,6 +121,8 @@ function ManifestCard(props) {
                 <ManifestActions
                     manifestId={id}
                     complete={complete}
+                    loadCount={loadCount}
+                    setLoadCount={setLoadCount}
                 />
             </Card>
         </Grid> 

@@ -51,6 +51,8 @@ function ManifestPage() {
     const [loading, setLoading] = React.useState(true)
     const [manifest, setManifest] = React.useState({})
     const [documents, setDocuments] = React.useState([])
+    // quick / easy way to force reload
+    const [loadCount, setLoadCount] = React.useState(0)
 
     React.useEffect(() => {
         async function load() {
@@ -61,7 +63,11 @@ function ManifestPage() {
             setLoading(false)
         }
         load()
-    }, [id])
+    }, [id, loading])
+
+    React.useEffect(() => {
+        setLoading(true)
+    }, [loadCount])
 
     if (loading) {
         return (
@@ -83,6 +89,8 @@ function ManifestPage() {
         >
             <ManifestCard
                 {...manifest}
+                loadCount={loadCount}
+                setLoadCount={setLoadCount}
             />
             <ManifestTable
                 documents={documents}

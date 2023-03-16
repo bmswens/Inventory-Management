@@ -49,12 +49,17 @@ function clean(text) {
 }
 
 const emptyData = {
-    name: '',
+    docId: '',
     nsn: '',
     weight: '',
     micap: false,
     actualQuantity: '',
-    location: ''
+    location: '',
+    unit: '',
+    quantity: '',
+    condition: '',
+    distribution: '',
+    money: ''
 }
 
 function AddDocumentDialog(props) {
@@ -120,18 +125,20 @@ function AddDocumentDialog(props) {
     }
 
     React.useEffect(() => {
-        let text = scan
-        let d = {}
-        d.unit = text.slice(0, 2)
-        d.quantity = text.slice(2, 7)
-        d.actualQuantity = d.quantity
-        d.condition = text.slice(7, 8)
-        d.distribution = text.slice(8, 10)
-        let dollars = text.slice(10, 15)
-        let cents = text.slice(15)
-        let m = `${dollars}.${cents}`
-        d.money = m
-        setData({ ...data, ...d })
+        if (scan) {
+            let text = scan
+            let d = {}
+            d.unit = text.slice(0, 2)
+            d.quantity = text.slice(2, 7)
+            d.actualQuantity = d.quantity
+            d.condition = text.slice(7, 8)
+            d.distribution = text.slice(8, 10)
+            let dollars = text.slice(10, 15)
+            let cents = text.slice(15)
+            let m = `${dollars}.${cents}`
+            d.money = m
+            setData({ ...data, ...d })
+        }
     }, [scan, data])
 
     return (
