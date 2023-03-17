@@ -8,6 +8,9 @@ async function addDocument(id, document) {
         `/api/manifests/${id}/addDocument`,
         {
             method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
             body: JSON.stringify({id: document})
         }
     )
