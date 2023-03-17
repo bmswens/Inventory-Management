@@ -1,6 +1,6 @@
 
 async function add(document) {
-    await fetch('/api/manifests/add', {
+    await fetch('/api/documents/add', {
         method: "POST",
         headers: {
             "content-type": "application/json"
