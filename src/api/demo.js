@@ -2,6 +2,7 @@ import items from './items.json'
 import orders from './orders.json'
 import spareParts from './spareparts.json'
 import puts from './putaways.json'
+import local from './local'
 
 // items
 function getAll() {
@@ -63,7 +64,8 @@ const api = {
     },
     putAways: {
         getAll: getAllPuts
-    }
+    },
+    ...local
 }
 
 

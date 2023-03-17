@@ -2,7 +2,7 @@
 import { Grid, LinearProgress } from '@mui/material'
 import React from 'react'
 import { useParams } from 'react-router'
-import local from '../../api/local'
+import api from '../../api'
 import ManifestCard from './ManifestCard'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 
@@ -56,8 +56,8 @@ function ManifestPage() {
 
     React.useEffect(() => {
         async function load() {
-            let m = await local.manifests.getByID(id)
-            let d = await local.documents.getByManifest(id)
+            let m = await api.manifests.getByID(id)
+            let d = await api.documents.getByManifest(id)
             setManifest(m)
             setDocuments(d)
             setLoading(false)

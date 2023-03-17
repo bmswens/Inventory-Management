@@ -1,5 +1,5 @@
-import items from './items.json'
-import orders from './orders.json'
+import items from '../items.json'
+import orders from '../orders.json'
 
 
 // items

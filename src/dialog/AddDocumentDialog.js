@@ -4,7 +4,7 @@ import React from 'react'
 
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import BarcodeDialog from './BarcodeDialog';
-import local from '../api/local';
+import api from '../api';
 
 function handle7Q(text) {
     return [text.match(/\d*/)[0], text.match(/\D.*/)[0]]
@@ -109,8 +109,8 @@ function AddDocumentDialog(props) {
     async function submit() {
         data.id = data.docId
         console.log(data)
-        await local.documents.add(data)
-        await local.manifests.addDocument(manifestId, data.docId)
+        await api.documents.add(data)
+        await api.manifests.addDocument(manifestId, data.docId)
         reset()
     }
 
@@ -127,6 +127,9 @@ function AddDocumentDialog(props) {
     React.useEffect(() => {
         if (scan) {
             let text = scan
+            if (text.length === 20) {
+                text = text.slice(3)
+            }
             let d = {}
             d.unit = text.slice(0, 2)
             d.quantity = text.slice(2, 7)

@@ -26,8 +26,6 @@ import QrCodeIcon from '@mui/icons-material/QrCode'
 // custom
 import CameraDialog from '../dialog/CameraDialog'
 import QRMakerDialog from '../dialog/QRMakerDialog'
-import AddManifestDialog from '../dialog/AddManifestDialog'
-
 
 function AppButton(props) {
 
@@ -126,8 +124,6 @@ function QRMakerButton(props) {
 
 function HomePage(props) {
 
-    const [manifestOpen, setManifestOpen] = React.useState(false)
-
     return (
         <Grid
             container
@@ -169,7 +165,7 @@ function HomePage(props) {
             <AppButton
                 title="In Check"
                 icon={<TaskAltIcon sx={{ fontSize: "20vmin" }} />}
-                onClick={() => setManifestOpen(true)}
+                link="/manifests"
             />
             <AppButton
                 disabled
@@ -203,10 +199,6 @@ function HomePage(props) {
                 icon={<ConstructionIcon sx={{ fontSize: "20vmin" }} />}
             />
             <QRMakerButton />
-            <AddManifestDialog
-                open={manifestOpen}
-                close={() => setManifestOpen(false)}
-            />
         </Grid>
 
     )

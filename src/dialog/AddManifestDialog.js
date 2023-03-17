@@ -2,7 +2,7 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, TextField } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router'
-import local from '../api/local'
+import api from '../api'
 
 
 function AddManifestDialog(props) {
@@ -11,7 +11,7 @@ function AddManifestDialog(props) {
     const navigate = useNavigate()
 
     async function submit() {
-        await local.manifests.add(id)
+        await api.manifests.add(id)
         navigate(`/manifests/${id}`)
         handleClose()
     }

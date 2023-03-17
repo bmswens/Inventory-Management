@@ -1,8 +1,10 @@
 // React
-import { Avatar, Box, Card, CardActions, CardHeader, Grid, IconButton, Tooltip, useTheme } from '@mui/material'
+import { Avatar, Box, Card, CardActions, CardHeader, Grid, IconButton, Tooltip } from '@mui/material'
 import React from 'react'
 
 // MUI Icons
+import DownloadIcon from '@mui/icons-material/Download';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import LaunchIcon from '@mui/icons-material/Launch';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import CheckIcon from '@mui/icons-material/Check';
@@ -10,7 +12,7 @@ import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import local from '../../api/local';
+import api from '../../api';
 import AddDocumentDialog from '../../dialog/AddDocumentDialog';
 
 function ManifestActions(props) {
@@ -19,11 +21,12 @@ function ManifestActions(props) {
         manifestId,
         complete,
         loadCount,
-        setLoadCount
+        setLoadCount,
+        docs
     } = props
 
     async function handleComplete() {
-        await local.manifests.complete(manifestId)
+        await api.manifests.complete(manifestId)
     }
 
     const [open, setOpen] = React.useState(false)
@@ -34,6 +37,34 @@ function ManifestActions(props) {
             setLoadCount(loadCount + 1)
         }
     }, [loadCount, setLoadCount, open, reloadProcessed])
+
+    async function copyToClipboard() {
+        let output = []
+        for (let id of docs) {
+            let line = await api.documents.makeBatchLine(id)
+            output.push(line)
+        }
+        let text = output.join('\n')
+        navigator.clipboard.writeText(text)
+    }
+
+    async function download() {
+        let output = []
+        for (let id of docs) {
+            let line = await api.documents.makeBatchLine(id)
+            output.push(line)
+        }
+        let text = output.join('\n')
+        let blob = new Blob([text])
+        let url = window.URL.createObjectURL(blob)
+        let div = document.createElement('a')
+        div.style.display = "none"
+        div.href = url
+        div.download = 'batch.txt'
+        // document.body.appendChild(div)
+        div.click()
+        window.URL.revokeObjectURL(url)
+    }
 
     if (!id) {
         return (
@@ -63,6 +94,24 @@ function ManifestActions(props) {
                     <TaskAltIcon fontSize='large' />
                 </IconButton>
             </Tooltip>
+            <Tooltip
+                title="Copy Batch File Contents"
+            >
+                <IconButton
+                    onClick={copyToClipboard}
+                >
+                    <ContentCopyIcon fontSize="large" />
+                </IconButton>
+            </Tooltip>
+            <Tooltip
+                title="Download Batch File"
+            >
+                <IconButton
+                    onClick={download}
+                >
+                    <DownloadIcon fontSize="large" />
+                </IconButton>
+            </Tooltip>
             <Box sx={{flexGrow: 1}} />
             <Tooltip
                 title="Add Document"
@@ -90,10 +139,9 @@ function ManifestCard(props) {
         id,
         complete,
         setLoadCount,
-        loadCount
+        loadCount,
+        docs
     } = props
-
-    const theme = useTheme()
 
     return (
         <Grid
@@ -106,7 +154,7 @@ function ManifestCard(props) {
                     avatar={
                         <Avatar
                             sx={{
-                                color: complete ? theme.palette.success : theme.palette.error
+                                bgcolor: complete ? "green" : "darkred"
                             }}
                         >
                             {
@@ -123,6 +171,7 @@ function ManifestCard(props) {
                     complete={complete}
                     loadCount={loadCount}
                     setLoadCount={setLoadCount}
+                    docs={docs}
                 />
             </Card>
         </Grid> 
