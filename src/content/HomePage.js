@@ -28,7 +28,6 @@ import InboxIcon from '@mui/icons-material/Inbox';
 import CameraDialog from '../dialog/CameraDialog'
 import QRMakerDialog from '../dialog/QRMakerDialog'
 
-
 function AppButton(props) {
 
     const {
@@ -37,7 +36,8 @@ function AppButton(props) {
         title,
         link,
         size,
-        external
+        external,
+        onClick
     } = props
 
     return (
@@ -50,6 +50,7 @@ function AppButton(props) {
                         <span>
                             <IconButton
                                 disabled={disabled}
+                                onClick={onClick}
                             >
                                 {icon}
                             </IconButton>
@@ -163,9 +164,9 @@ function HomePage(props) {
                 icon={<MoveDownIcon sx={{ fontSize: "20vmin" }} />}
             />
             <AppButton
-                disabled
                 title="In Check"
                 icon={<TaskAltIcon sx={{ fontSize: "20vmin" }} />}
+                link="/manifests"
             />
             <AppButton
                 disabled
@@ -173,8 +174,8 @@ function HomePage(props) {
                 icon={<VerifiedUserIcon sx={{ fontSize: "20vmin" }} />}
             />
             <AppButton
-                disabled
                 title="Ship"
+                link="/shipping/x"
                 icon={<LocalShippingIcon sx={{ fontSize: "20vmin" }} />}
             />
             <AppButton

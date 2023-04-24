@@ -13,6 +13,9 @@ import AllPutAways from './putaway/AllPutAways'
 import KitPage from './kit/KitPage'
 import AllKits from './kit/AllKits'
 
+import ManifestPage from './manifests/ManifestPage'
+import ShipInputPage from './ship/ShipInputPage'
+import AllManifests from './manifests/AllManifests'
 
 function Content(props) {
 
@@ -37,6 +40,18 @@ function Content(props) {
             <Route
                 path="/put-away"
                 element={<AllPutAways />}
+            />
+            <Route
+                path="/manifests"
+                element={<AllManifests />}
+            />
+            <Route
+                path="/manifests/:id"
+                element={<ManifestPage />}
+            />
+            <Route
+                path="/shipping/:id"
+                element={<ShipInputPage />}
             />
             <Route
                 path="/kit"
