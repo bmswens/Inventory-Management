@@ -22,6 +22,7 @@ import FollowTheSignsIcon from '@mui/icons-material/FollowTheSigns'
 import TableRestaurantIcon from '@mui/icons-material/TableRestaurant'
 import ConstructionIcon from '@mui/icons-material/Construction'
 import QrCodeIcon from '@mui/icons-material/QrCode'
+import InboxIcon from '@mui/icons-material/Inbox';
 
 // custom
 import CameraDialog from '../dialog/CameraDialog'
@@ -198,6 +199,11 @@ function HomePage(props) {
                 icon={<ConstructionIcon sx={{ fontSize: "20vmin" }} />}
             />
             <QRMakerButton />
+            <AppButton
+                link="/kit"
+                title="Kits"
+                icon={<InboxIcon sx={{ fontSize: "20vmin" }} />}
+            />
         </Grid>
 
     )

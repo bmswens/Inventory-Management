@@ -48,6 +48,41 @@ function getAllPuts() {
     return output
 }
 
+// kit
+async function getAllKits() {
+    return [
+        {
+            name: "Kit-001"
+        },
+        {
+            name: "Kit-002"
+        }
+    ]
+}
+
+async function getItemsByKit(kit) {
+    return [
+        {
+            id: 1,
+            nsn: "001",
+            name: "Demo Item 1",
+            location: "loc1",
+            errc: "XD2",
+            quantity: 3,
+            authorized: 5
+        },
+        {
+            id: 2,
+            nsn: "002",
+            name:  "Demo Item 2: Electric Boogaloo",
+            location: "loc1",
+            errc: "XD2",
+            quantity: 1,
+            authorized: 15
+        }
+    ]
+}
+
 const api = {
     items: {
         getAll,
@@ -63,8 +98,11 @@ const api = {
     },
     putAways: {
         getAll: getAllPuts
+    },
+    kit: {
+        getAll: getAllKits,
+        getItemsByKit: getItemsByKit
     }
 }
-
 
 export default api

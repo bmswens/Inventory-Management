@@ -10,6 +10,9 @@ import HomePage from './HomePage'
 import AllOrders from './order/AllOrders'
 import SpareParts from './spareparts/SpareParts'
 import AllPutAways from './putaway/AllPutAways'
+import KitPage from './kit/KitPage'
+import AllKits from './kit/AllKits'
+
 
 function Content(props) {
 
@@ -34,6 +37,14 @@ function Content(props) {
             <Route
                 path="/put-away"
                 element={<AllPutAways />}
+            />
+            <Route
+                path="/kit"
+                element={<AllKits />}
+            />
+            <Route
+                path="/kit/:kit"
+                element={<KitPage />}
             />
         </Routes>
     )
