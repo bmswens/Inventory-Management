@@ -43,10 +43,10 @@ function HandleKitDialog(props) {
 
     async function submit() {
         if (add) {
-            await api.kit.restock(kit, item, quantity)
+            await api.kit.restock(kit, item.nsn, quantity)
         }
         else {
-            await api.kit.issue(kit, item, quantity, issuedBy, issuedTo)
+            await api.kit.issue(kit, item.nsn, quantity, issuedBy, issuedTo)
         }
         onClose()
     }
