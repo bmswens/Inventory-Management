@@ -17,7 +17,7 @@ async function getItemsByKit(kit) {
 
 async function restock(kit, nsn, quantity) {
     await fetch(
-        `/api/kit/${kit}/${nsn}/restock`,
+        `/api/kits/${kit}/${nsn}/restock`,
         {
             method: "POST",
             headers: {
@@ -30,7 +30,7 @@ async function restock(kit, nsn, quantity) {
 
 async function issue(kit, nsn, quantity, issuedBy, issuedTo) {
     await fetch(
-        `/api/kit/${kit}/${nsn}/issue`,
+        `/api/kits/${kit}/${nsn}/issue`,
         {
             method: "POST",
             headers: {
