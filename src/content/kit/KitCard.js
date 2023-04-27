@@ -58,11 +58,13 @@ function KitCard(props) {
                 </CardActions>
             </Card>
             <HandleKitDialog
+                kit={name}
                 add
                 open={addOpen}
                 onClose={() => setAddOpen(false)}
             />
             <HandleKitDialog
+                kit={name}
                 open={issueOpen}
                 onClose={() => setIssueOpen(false)}
             />
