@@ -46,7 +46,7 @@ async function issue(kit, nsn, quantity, issuedBy, issuedTo) {
 }
 
 const kit = {
-    getAllKits,
+    getAll: getAllKits,
     getItemsByKit,
     restock,
     issue
