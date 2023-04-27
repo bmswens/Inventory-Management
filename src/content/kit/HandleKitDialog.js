@@ -82,13 +82,13 @@ function HandleKitDialog(props) {
                         <TextField
                             fullWidth
                             label="Issued By"
-                            value={quantity}
+                            value={issuedBy}
                             onChange={event => setIssuedBy(event.target.value)}
                         />
                         <TextField
                             fullWidth
                             label="Issued To"
-                            value={quantity}
+                            value={issuedTo}
                             onChange={event => setIssuedTo(event.target.value)}
                         />
                     </>
