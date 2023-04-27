@@ -5,6 +5,9 @@ import React from 'react'
 import { Grid } from '@mui/material'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 
+// router
+import { useParams } from 'react-router-dom'
+
 // Custom
 import KitCard from './KitCard'
 import api from '../../api'
@@ -76,6 +79,8 @@ function KitTable(props) {
 
 function KitPage(props) {
 
+    let { kit } = useParams()
+
     return (
         <Grid
             container
@@ -86,9 +91,11 @@ function KitPage(props) {
                 marginTop: "7px"
             }}
         >
-            <KitCard name="Kit-001" />
+            <KitCard 
+                name={kit} 
+            />
             <KitTable
-                kit="Kit-001"
+                kit={kit}
             />
         </Grid>
     )
