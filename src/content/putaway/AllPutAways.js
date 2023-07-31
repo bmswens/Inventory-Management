@@ -3,12 +3,12 @@ import React from 'react'
 
 // MUI
 import { Grid, Card, CardContent, TextField, CardActions, Stack, IconButton, Button } from '@mui/material'
-import ExploreIcon from '@mui/icons-material/Explore';
+import AddIcon from '@mui/icons-material/Add';
 
 // custom
 import api from '../../api'
 import PutAwayCard from './PutAwayCard'
-import ItemDialog from '../../dialog/ItemDialog'
+import ItemDialog from '../../dialog/PutAwayItemDialog'
 
 function AllPutAways(props) {
 
@@ -85,7 +85,7 @@ function AllPutAways(props) {
                                     setItemDialogOpen(true)
                                 }}
                             >
-                                <ExploreIcon sx={{ fontSize: "6vmin" }} />
+                                <AddIcon sx={{ fontSize: "5.5vmin" }} />
                             </IconButton>
                             <Button
                                 variant="contained"
@@ -94,7 +94,6 @@ function AllPutAways(props) {
                                 Search
                             </Button>
                             <ItemDialog
-                                dialogBoxName="Putaway Box"
                                 open={itemDialogOpen}
                                 close={close}
                             />

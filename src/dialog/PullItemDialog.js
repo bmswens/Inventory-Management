@@ -4,12 +4,11 @@ import React from 'react'
 // MUI
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Stack, TextField, MenuItem } from '@mui/material';
 
-function ItemDialog(props) {
+function PullItemDialog(props) {
 
     const {
         open,
-        close,
-        dialogBoxName
+        close
     } = props
 
     const qtyUnitOptions = [
@@ -24,7 +23,6 @@ function ItemDialog(props) {
 
     const [name, setName] = React.useState('')
     const [nsnItem, setNsnItem] = React.useState('')
-    const [pullVsPut, setPullVsPut] = React.useState('')
     const [qty, setQty] = React.useState('')
     const [qtyUnit, setQtyUnit] = React.useState('')
     const [qtyToBin, setQtyToBin] = React.useState('')
@@ -34,7 +32,6 @@ function ItemDialog(props) {
     function handleClose() {
         setName('')
         setNsnItem('')
-        setPullVsPut('')
         setQty('')
         setQtyToBin('')
         setShipFrom('')
@@ -50,7 +47,7 @@ function ItemDialog(props) {
             maxWidth="sm"
         >
             <DialogTitle align="center">
-                {dialogBoxName || 'Issue Item'}
+                Pull Item
             </DialogTitle>
             <DialogContent>
                 <Stack
@@ -71,17 +68,6 @@ function ItemDialog(props) {
                         value={nsnItem}
                         onChange={event => setNsnItem(event.target.value)}
                     />
-
-                    <TextField
-                        fullWidth
-                        select
-                        label="Pull vs Put"
-                        value={pullVsPut}
-                        onChange={event => setPullVsPut(event.target.value)}
-                    >
-                        <MenuItem key="Pull" value="Pull">Pull</MenuItem>
-                        <MenuItem key="Put" value="Put">Put</MenuItem>
-                    </TextField>
 
                     <Stack 
                         spacing={1}
@@ -152,4 +138,4 @@ function ItemDialog(props) {
 
 }
 
-export default ItemDialog
+export default PullItemDialog

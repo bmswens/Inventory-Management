@@ -3,12 +3,12 @@ import React from 'react'
 
 // MUI
 import { Grid, IconButton, Card, CardContent, CardActions, TextField, Stack, Button } from '@mui/material'
-import ExploreIcon from '@mui/icons-material/Explore';
+import AddIcon from '@mui/icons-material/Add';
 
 // custom
 import api from '../../api'
 import OrderCard from './OrderCard'
-import ItemDialog from '../../dialog/ItemDialog'
+import ItemDialog from '../../dialog/PullItemDialog'
 
 function AllOrders(props) {
 
@@ -85,7 +85,7 @@ function AllOrders(props) {
                                     setItemDialogOpen(true)
                                 }}
                             >
-                                <ExploreIcon sx={{ fontSize: "6vmin" }} />
+                                <AddIcon sx={{ fontSize: "5.5vmin" }} />
                             </IconButton>
                             <Button
                                 variant="contained"
@@ -94,7 +94,6 @@ function AllOrders(props) {
                                 Search
                             </Button>
                             <ItemDialog
-                                dialogBoxName="Pull Item"
                                 open={itemDialogOpen}
                                 close={close}
                             />
