@@ -85,7 +85,7 @@ function AllPutAways(props) {
                                     setItemDialogOpen(true)
                                 }}
                             >
-                                <AddIcon sx={{ fontSize: "5.5vmin" }} />
+                                <AddIcon fontSize="large" />
                             </IconButton>
                             <Button
                                 variant="contained"
